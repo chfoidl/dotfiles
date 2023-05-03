@@ -1,0 +1,46 @@
+# ZSH
+[zsh.files]
+"zsh/zshrc" = "~/.zshrc"
+
+# Dev
+[dev.files]
+"lazygit/config.yml" = "~/.config/lazygit/config.yml"
+"nvim" = "~/.config/nvim"
+
+#
+# Graphical User Interface
+#
+
+# Hyprland
+[hyprland]
+depends = ["wayland"]
+
+[hyprland.files]
+"hypr/hyprland.conf" = "~/.config/hypr/hyprland.conf"
+"hypr/hyprpaper.conf" = "~/.config/hypr/hyprpaper.conf"
+
+# Sway
+[sway]
+depends = ["wayland"]
+
+[sway.files]
+"sway/config" = "~/.config/sway/config"
+
+# Wayland
+[wayland]
+depends = ["graphical"]
+
+[wayland.files]
+"way-displays" = "~/.config/way-displays"
+"waybar" = "~/.config/waybar"
+
+# Graphical
+[graphical.files]
+"fontconfig/fonts.conf" = "~/.config/fontconfig/fonts.conf"
+"alacritty/alacritty.yml" = "~/.config/alacritty/alacritty.yml"
+"dunst/dunstrc" = "~/.config/dunst/dunstrc"
+"chrome-flags.conf" = "~/.config/chrome-flags.conf"
+"chromium-flags.conf" = "~/.config/chromium-flags.conf"
+"mimeapps.list" = "~/.config/mimeapps.list"
+"user-dirs.dirs" = "~/.config/user-dirs.dirs"
+"user-dirs.locale" = "~/.config/user-dirs.locale"

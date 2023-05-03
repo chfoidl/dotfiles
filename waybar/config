@@ -1,0 +1,133 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 40,
+  "modules-left": [
+    "wlr/workspaces"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "custom/docker",
+    "cpu",
+    "memory",
+    "temperature",
+    "pulseaudio",
+    "network",
+    "backlight",
+    "battery",
+    "clock#calendar",
+    "clock",
+    "tray"
+  ],
+  "wlr/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+  },
+  "river/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "spacing": 4,
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  },
+  "clock#calendar": {
+    "timezone": "Europe/Vienna",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "<span color=\"#737374\"></span> {:%a %d. %b}"
+  },
+  "clock": {
+    "timezone": "Europe/Vienna",
+    "format": "<span color=\"#737374\"></span> {:%H:%M}",
+    "format-alt": "<span color=\"#737374\"></span> {:%d.%m.%Y}"
+  },
+  "cpu": {
+    "format": "<span color=\"#989cff\"></span> {usage}%",
+    "interval": 3
+  },
+  "memory": {
+    "format": "<span color=\"#d19a66\">﬙</span> {percentage}%",
+    "interval": 3
+  },
+  "temperature": {
+    // "thermal-zone": 2,
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C {icon}",
+    "interval": 3,
+    "format": "<span color=\"#d26767\"> </span>{temperatureC}°C",
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "<span color=\"#61afef\"></span> {percent}%"
+  },
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span color=\"#8bc88e\">{icon}</span> {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "full-at": 97,
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ]
+  },
+  "battery#bat2": {
+    "bat": "BAT2"
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "<span color=\"#8bc88e\">直 </span>{essid} ({signalStrength}%)",
+    "format-ethernet": "<span color=\"#8bc88e\"></span>",
+    "format-linked": "<span color=\"#d19a66\"> (no IP)",
+    "format-disconnected": "<span color=\"#999999\"> "
+  },
+  "pulseaudio": {
+    "format": "<span color=\"#989cff\">{icon}</span> {volume}%",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": "婢 {icon} {format_source}",
+    "format-muted": "婢 {volume}%",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pulsemixer --toggle-mute"
+  },
+  "custom/docker": {
+    "exec-if": "test \"$(docker ps -q | wc -l)\" -gt 0",
+    "exec": "docker ps -q | wc -l",
+    "format": "<span color=\"#377edc\"> </span> {}",
+    "interval": 10
+  },
+  "river/window": {
+    "max-length": 50
+  }
+}

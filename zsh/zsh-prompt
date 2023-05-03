@@ -1,0 +1,61 @@
+#!/bin/sh
+
+## autoload vcs and colors
+autoload -Uz vcs_info
+autoload -U colors && colors
+
+# enable only git 
+zstyle ':vcs_info:*' enable git 
+
+# setup a hook that runs before every ptompt. 
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
+# add a function to check for untracked files in the directory.
+# from https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+# 
++vi-git-untracked(){
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep '??' &> /dev/null ; then
+        # This will show the marker if there are any untracked files in repo.
+        # If instead you want to show the marker only if there are untracked
+        # files in $PWD, use:
+        #[[ -n $(git ls-files --others --exclude-standard) ]] ; then
+        hook_com[staged]+='!' # signify new files with a bang
+    fi
+}
+
+local _spacer="%F{240}  %f"
+
+zstyle ':vcs_info:*' check-for-changes true
+# zstyle ':vcs_info:git:*' formats " %r/%S %b %m%u%c "
+zstyle ':vcs_info:git:*' formats "${_spacer}%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[magenta]%} %b"
+
+# format our main prompt for hostname current folder, and permissions.
+#local prefix="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%m%{$fg[red]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+
+local prefix="[]─[]─[]"
+local suffix="%{$fg[cyan]%}%c%{$reset_color%}"
+
+local identity="%{$fg[blue]%}%n%{$fg[blue]%}@%{$fg[blue]%}%m%{$reset_color%}"
+
+local _line=66
+local _badge=237
+
+
+local pwd="%F{75}%1~%\%f"
+local exit_status="%B%F{1}%?%f%b${_spacer}"
+local job_count="${_spacer}%F{3}%j%f"
+
+local top="%F{$_line}╭──%F{$_badge} %f%K{$_badge}%f%F{244}%f${_spacer}%(?::$exit_status)${pwd}%(1j:$job_count:)\$vcs_info_msg_0_ %k%F{$_badge}%{$reset_color%}"
+
+local bot='%F{66}╰─ %(?:%F{66}:%F{1})%(!.#.$) %k%f'
+
+PROMPT=$'\n'$top$'\n'$bot
+# PROMPT="%{$fg[green]%}%n@%m %~ %{$reset_color%}%#> "
+
+# TODO look into this for more colors
+# https://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
+# also ascii escape codes
