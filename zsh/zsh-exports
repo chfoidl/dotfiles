@@ -20,11 +20,16 @@ export XKB_DEFAULT_LAYOUT=de
 export XKB_DEFAULT_OPTIONS=caps:escape
 
 export WLR_NO_HARDWARE_CURSORS=1
-export WLR_DRM_NO_MODIFIERS=1
-export XDG_CURRENT_DESKTOP=sway
+#export WLR_DRM_NO_MODIFIERS=1
 export XDG_SESSION_TYPE=wayland
-export LIBVA_DRIVER_NAME=radeonsi
-export VDPAU_DRIVER=radeonsi
+#export LIBVA_DRIVER_NAME=radeonsi
+export LIBVA_DRIVER_NAME=nvidia
+#export VDPAU_DRIVER=radeonsi
+export VDPAU_DRIVER=nvidia
 
 export DOCKER_BUILDKIT=1
 export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+
+# fnm
+export PATH="$HOME/.local/share/fnm:$PATH"
+eval "`fnm env --use-on-cd`"

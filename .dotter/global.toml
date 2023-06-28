@@ -1,11 +1,14 @@
 # ZSH
 [zsh.files]
+"zsh/zshrc" = "~/.config/zsh/.zshrc"
 "zsh/zshrc" = "~/.zshrc"
+"zsh" = "~/.config/zsh"
 
 # Dev
 [dev.files]
-"lazygit/config.yml" = "~/.config/lazygit/config.yml"
-"nvim" = "~/.config/nvim"
+"lazygit/config.yml" = { type = "symbolic", target = "~/.config/lazygit/config.yml" }
+nvim = "~/.config/nvim"
+nvim = { type = "symbolic", target = "~/.config/nvim" }
 
 #
 # Graphical User Interface
@@ -18,6 +21,7 @@ depends = ["wayland"]
 [hyprland.files]
 "hypr/hyprland.conf" = "~/.config/hypr/hyprland.conf"
 "hypr/hyprpaper.conf" = "~/.config/hypr/hyprpaper.conf"
+"hypr/start-hyprland-services.sh" = "~/.config/hypr/start-hyprland-services.sh"
 
 # Sway
 [sway]

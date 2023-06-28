@@ -5,10 +5,15 @@ end
 
 dap.set_log_level('TRACE')
 
+-- dap.adapters.php = {
+--   type = 'executable',
+--   command = 'node',
+--   args = { '/home/chfoidl/workspace/private/vscode-php-debug/out/phpDebug.js' },
+-- }
+
 dap.adapters.php = {
   type = 'executable',
-  command = 'node',
-  args = { '/home/chfoidl/workspace/private/vscode-php-debug/out/phpDebug.js' },
+  command = 'php-debug-adapter',
 }
 
 dap.configurations.php = {

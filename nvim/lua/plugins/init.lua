@@ -43,7 +43,7 @@ local opts = {
 lazy.setup({
 	-- UI
 	{
-		dir = "~/.config/nvim/local-plugins/base46",
+		"chfoidl/base46",
 		config = function()
 			local theme = require("base46")
 			theme.load_theme()

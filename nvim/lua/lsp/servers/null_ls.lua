@@ -28,6 +28,7 @@ M.setup = function(on_attach)
             formatting.prettierd,
             formatting.stylua,
             formatting.gofmt,
+            formatting.rustywind,
             formatting.shfmt.with {
                 filetypes = { "sh", "bash", "zsh" },
             },
