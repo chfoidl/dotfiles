@@ -30,7 +30,7 @@ M.setup = function(on_attach, capabilities)
     settings = settings,
     capabilities = capabilities,
     init_options = {
-      licenceKey = "00J2T534HKJ6WW3",
+      licenceKey = "--------",
     },
   }
 end
