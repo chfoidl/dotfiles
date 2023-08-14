@@ -1,8 +1,0 @@
-customCommands:
-  - key: '<c-n>'
-    description: 'merge into currently checked out branch with --no-ff'
-    command: 'git merge {{index .SelectedLocalBranch.Name }} --no-ff'
-    context: 'localBranches'
-git:
-  autoRefresh: false
-  overrideGpg: true
