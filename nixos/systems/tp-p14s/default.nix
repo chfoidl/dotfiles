@@ -10,6 +10,9 @@
   sops.defaultSopsFile = ../../secrets/shared/secrets.yaml;
   sops.gnupg.sshKeyPaths = [ "/etc/ssh/ssh_host_rsa_key" ];
   sops.secrets."wg-quick/wunderwerk/configFile" = {};
+  sops.secrets."wg-quick/ush/configFile" = {
+    sopsFile = ./secrets.yaml;
+  };
 
   #programs.hyprland.enable = true;
 
@@ -38,6 +41,11 @@
     wg_wunderwerk = {
       autostart = false;
       configFile = "/run/secrets/wg-quick/wunderwerk/configFile";
+    };
+    wg_ush = {
+      autostart = false;
+      #dns = [ "10.99.99.1" ];
+      configFile = "/run/secrets/wg-quick/ush/configFile";
     };
   };
 

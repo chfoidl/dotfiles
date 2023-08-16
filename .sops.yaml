@@ -3,9 +3,19 @@ keys:
   - &host_chf-workstation cabe7a49813b43d68cc86714217fd8039d2474e0
   - &host_tp-p14s A9F73A318B64BD75D26EBAED4691114D30F8CADD
 creation_rules:
-  - path_regex: secrets.yaml$
+  - path_regex: secrets/shared/secrets.yaml$
     key_groups:
     - pgp:
       - *admin_chfoidl
       - *host_chf-workstation
+      - *host_tp-p14s
+  - path_regex: systems/chf-workstation/secrets.yaml$
+    key_groups:
+    - pgp:
+      - *admin_chfoidl
+      - *host_chf-workstation
+  - path_regex: systems/tp-p14s/secrets.yaml$
+    key_groups:
+    - pgp:
+      - *admin_chfoidl
       - *host_tp-p14s
