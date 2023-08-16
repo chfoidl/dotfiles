@@ -28,6 +28,11 @@
       url = "github:wunderwerkio/nix-ddev/v1.22.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    configured-nvim = {
+      url = "github:chfoidl/nvim-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

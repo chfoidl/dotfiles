@@ -1,6 +1,7 @@
 { inputs, config, system, pkgs, unstable-pkgs, ... }:
 {
   imports = [
+    inputs.configured-nvim.homeManagerModules.default
     ./modules/git.nix
     #./modules/neovim.nix
     ./modules/brave.nix
@@ -47,10 +48,18 @@
     wlr-randr
     wl-clipboard
     slack
-    signal-desktop
     postman
     figma-linux
     xdg-utils
+    whatsapp-for-linux
+
+    (signal-desktop.overrideAttrs (oldAttrs: rec {
+      preFixup = oldAttrs.preFixup + ''
+        # Start in tray by default
+        substituteInPlace $out/share/applications/${oldAttrs.pname}.desktop \
+          --replace "%U" "--use-tray-icon --start-in-tray %U"
+      '';
+    }))
 
     # todo: remove, once home-manager 23.11 is released.
     ripgrep
@@ -77,13 +86,6 @@
     })
 
     (pkgs.writeShellApplication {
-      name = "nvim";
-      text = ''
-        ${pkgs.nix}/bin/nix run github:chfoidl/nvim-flake --offline -- "$@"
-      '';
-    })
-
-    (pkgs.writeShellApplication {
       name = "nix-fetch-hash";
       text = ''
         base32=$(${pkgs.nix}/bin/nix-prefetch-url --type sha256 "$1")
@@ -93,6 +95,11 @@
       '';
     })
   ];
+
+  programs.configured-nvim = {
+    enable = true;
+    useNightly = false;
+  };
 
   services.gnome-keyring.enable = true;
 

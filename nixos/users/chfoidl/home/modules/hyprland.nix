@@ -16,6 +16,7 @@
     recommendedEnvironment = true;
     extraConfig = ''
 # Monitor setup.
+monitor=eDP-1,preferred,0x0,1
 monitor=DP-3,preferred,0x860,1
 monitor=DP-1,preferred,1280x660,1
 monitor=DP-2,preferred,4720x0,1,transform,3

@@ -68,7 +68,10 @@
     cifs-utils
     pinentry-curses
     polkit_gnome
+    gnome.adwaita-icon-theme
   ];
+
+  programs.dconf.enable = true;
 
   # Filesystem setup
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
