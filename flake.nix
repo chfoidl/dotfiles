@@ -53,6 +53,11 @@
           system = "x86_64-linux";
           users = [ "chfoidl" ];
         };
+        wunder-workstation = lib.mkSystem {
+          hostname = "wunder-workstation";
+          system = "x86_64-linux";
+          users = [ "chfoidl" ];
+        };
       };
       homeConfigurations = {
         "chfoidl@chf-workstation" = lib.mkHome {
@@ -65,6 +70,12 @@
           username = "chfoidl";
           system = "x86_64-linux";
           hostname = "tp-p14s";
+          stateVersion = "23.05";
+        };
+        "chfoidl@wunder-workstation" = lib.mkHome {
+          username = "chfoidl";
+          system = "x86_64-linux";
+          hostname = "wunder-workstation";
           stateVersion = "23.05";
         };
       };
