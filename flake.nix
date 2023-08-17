@@ -37,8 +37,18 @@
 
   outputs = inputs:
     let
-      overlays = with inputs;
-        [ ];
+      overlays = with inputs; [
+        (final: prev: {
+          liquidctl2 = prev.liquidctl.overrideAttrs (old: {
+            src = prev.fetchFromGitHub {
+              owner = old.pname;
+              repo = old.pname;
+              rev = "refs/tags/v1.13.0";
+              hash = "sha256-LU8rQmXrEIoOBTTFotGvMeHqksYGrtNo2YSl2l2e/UI=";
+            };
+          });
+        })
+      ];
       lib = import ./nixos/lib { inherit inputs overlays; };
     in
     {

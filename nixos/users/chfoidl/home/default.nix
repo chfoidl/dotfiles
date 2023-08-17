@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.configured-nvim.homeManagerModules.default
+    ./modules/atuin.nix
     ./modules/git.nix
     #./modules/neovim.nix
     ./modules/brave.nix
@@ -53,6 +54,14 @@
     xdg-utils
     whatsapp-for-linux
 
+    bitwarden
+    bitwarden-cli
+    anydesk
+    atuin
+
+    swayidle
+    swaylock-effects
+
     (signal-desktop.overrideAttrs (oldAttrs: rec {
       preFixup = oldAttrs.preFixup + ''
         # Start in tray by default
@@ -60,6 +69,8 @@
           --replace "%U" "--use-tray-icon --start-in-tray %U"
       '';
     }))
+
+    liquidctl2
 
     # todo: remove, once home-manager 23.11 is released.
     ripgrep
@@ -104,12 +115,12 @@
   services.gnome-keyring.enable = true;
 
   # Hyprpaper.
-  services.hyprpaper = {
-    enable = true;
-    package = inputs.hyprpaper.packages.${system}.hyprpaper;
-    preload = [ "~/pictures/wallpapers/wallpaper-1.jpg" ];
-    wallpaper = [ ",~/pictures/wallpapers/wallpaper-1.jpg" ];
-  };
+  #services.hyprpaper = {
+  #  enable = true;
+  #  package = inputs.hyprpaper.packages.${system}.hyprpaper;
+  #  preload = [ "~/pictures/wallpapers/wallpaper-1.jpg" ];
+  #  wallpaper = [ ",~/pictures/wallpapers/wallpaper-1.jpg" ];
+  #};
 
   # Manage ~/.config.
   xdg.configFile = {

@@ -1,5 +1,21 @@
-{ inputs, ... }:
-{
+{ inputs, hostname, ... }:
+let
+  monitorConfigSet = {
+    chf-workstation = ''
+      monitor=DP-3,preferred,0x860,1
+      monitor=DP-1,preferred,1280x660,1
+      monitor=DP-2,preferred,4720x0,1,transform,3
+    '';
+    tp-p14s = ''
+      monitor=eDP-1,preferred,0x0,1
+    '';
+    wunder-workstation = ''
+      monitor=DP-3,preferred,0x860,1
+      monitor=DP-1,preferred,1680x660,1
+      monitor=DP-2,preferred,5520x660,1
+    '';
+  };
+in {
   imports = [
     inputs.hyprland.homeManagerModules.default
   ];
@@ -14,13 +30,7 @@
       hidpi = true;
     };
     recommendedEnvironment = true;
-    extraConfig = ''
-# Monitor setup.
-monitor=eDP-1,preferred,0x0,1
-monitor=DP-3,preferred,0x860,1
-monitor=DP-1,preferred,1280x660,1
-monitor=DP-2,preferred,4720x0,1,transform,3
-
+    extraConfig = monitorConfigSet."${hostname}" + ''
 input {
     kb_layout = de
     kb_variant =

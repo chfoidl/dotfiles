@@ -34,11 +34,18 @@
     cpuFreqGovernor = "performance";
   };
 
-  networking.useDHCP = true;
+  networking.useDHCP = false;
+  systemd.network.enable = true;
+  systemd.network.networks = {
+    "10-lan" = {
+      matchConfig.Name = "eno*";
+      networkConfig.DHCP = "ipv4";
+    };
+  };
 
   networking.wg-quick.interfaces = {
     wg_ush = {
-      autostart = false;
+      autostart = true;
       configFile = "/run/secrets/wg-quick/ush/configFile";
     };
   };
@@ -83,7 +90,7 @@
   services.dbus.enable = true;
   services.gvfs.enable = true;
   services.pipewire = {
-    enable = true;
+    enable = false;
     alsa.enable = true;
     pulse.enable = true;
     jack.enable = true;
