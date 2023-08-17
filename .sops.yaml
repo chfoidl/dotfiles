@@ -10,6 +10,7 @@ creation_rules:
       - *admin_chfoidl
       - *host_chf-workstation
       - *host_tp-p14s
+      - *host_wunder-workstation
   - path_regex: systems/chf-workstation/secrets.yaml$
     key_groups:
     - pgp:
