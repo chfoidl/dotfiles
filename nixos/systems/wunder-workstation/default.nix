@@ -9,7 +9,6 @@
   # SOPS
   sops.defaultSopsFile = ../../secrets/shared/secrets.yaml;
   sops.gnupg.sshKeyPaths = [ "/etc/ssh/ssh_host_rsa_key" ];
-  sops.secrets."wg-quick/wunderwerk/configFile" = {};
   sops.secrets."wg-quick/ush/configFile" = {
     sopsFile = ./secrets.yaml;
   };
@@ -21,7 +20,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices = {
     sysroot = {
-      device = "/dev/disk/by-uuid/172d5eae-a405-45aa-9f54-f9285accda36";
+      device = "/dev/disk/by-uuid/0d0dd5f8-86d4-4bb7-9679-09dbc3e92597";
       preLVM = true;
       allowDiscards = true;
     };
@@ -38,10 +37,6 @@
   networking.useDHCP = true;
 
   networking.wg-quick.interfaces = {
-    wg_wunderwerk = {
-      autostart = false;
-      configFile = "/run/secrets/wg-quick/wunderwerk/configFile";
-    };
     wg_ush = {
       autostart = false;
       configFile = "/run/secrets/wg-quick/ush/configFile";
@@ -77,7 +72,10 @@
     cifs-utils
     pinentry-curses
     polkit_gnome
+    gnome.adwaita-icon-theme
   ];
+
+  programs.dconf.enable = true;
 
   # Filesystem setup
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
