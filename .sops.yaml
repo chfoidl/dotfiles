@@ -2,6 +2,7 @@ keys:
   - &admin_chfoidl F65267BDED8531DCD3D4F910196C046D738C6382
   - &host_chf-workstation cabe7a49813b43d68cc86714217fd8039d2474e0
   - &host_tp-p14s A9F73A318B64BD75D26EBAED4691114D30F8CADD
+  - &host_wunder-workstation 64469DA976F538FEB111DB27BB01D4FC230948CC
 creation_rules:
   - path_regex: secrets/shared/secrets.yaml$
     key_groups:
@@ -23,3 +24,4 @@ creation_rules:
     key_groups:
     - pgp:
       - *admin_chfoidl
+      - *host_wunder-workstation

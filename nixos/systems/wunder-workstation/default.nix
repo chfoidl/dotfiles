@@ -20,7 +20,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices = {
     sysroot = {
-      device = "/dev/disk/by-uuid/0d0dd5f8-86d4-4bb7-9679-09dbc3e92597";
+      device = "/dev/disk/by-uuid/c39fdac9-790b-4d05-a85b-00e5360ea9ed";
       preLVM = true;
       allowDiscards = true;
     };
