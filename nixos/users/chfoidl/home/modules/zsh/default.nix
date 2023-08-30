@@ -1,10 +1,14 @@
-{ ... }:
+{ pkgs, ... }:
 let
   zshrc = builtins.readFile ./zshrc;
   zshPrompt = builtins.readFile ./zsh-prompt;
   zshVimMode = builtins.readFile ./zsh-vim-mode;
 
-  zshAdditions = zshPrompt + "\n" + zshVimMode;
+  atuinIntegration = ''
+    eval "$(${pkgs.atuin}/bin/atuin init zsh)"
+  '';
+
+  zshAdditions = zshPrompt + "\n" + zshVimMode + "\n" + atuinIntegration;
 
   nvimCommand = "nix run github:chfoidl/nvim-flake --offline";
 in
