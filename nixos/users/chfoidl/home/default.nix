@@ -115,12 +115,12 @@
   services.gnome-keyring.enable = true;
 
   # Hyprpaper.
-  #services.hyprpaper = {
-  #  enable = true;
-  #  package = inputs.hyprpaper.packages.${system}.hyprpaper;
-  #  preload = [ "~/pictures/wallpapers/wallpaper-1.jpg" ];
-  #  wallpaper = [ ",~/pictures/wallpapers/wallpaper-1.jpg" ];
-  #};
+  services.hyprpaper = {
+    enable = true;
+    package = inputs.hyprpaper.packages.${system}.hyprpaper;
+    preload = [ "~/pictures/wallpapers/wallpaper-1.jpg" ];
+    wallpaper = [ ",~/pictures/wallpapers/wallpaper-1.jpg" ];
+  };
 
   # Manage ~/.config.
   xdg.configFile = {
