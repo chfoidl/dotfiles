@@ -5,7 +5,7 @@ let
   zshVimMode = builtins.readFile ./zsh-vim-mode;
 
   atuinIntegration = ''
-    eval "$(${pkgs.atuin}/bin/atuin init zsh)"
+    eval "$(${pkgs.atuin}/bin/atuin init zsh --disable-up-arrow)"
   '';
 
   zshAdditions = zshPrompt + "\n" + zshVimMode + "\n" + atuinIntegration;
