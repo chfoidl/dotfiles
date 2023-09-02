@@ -25,10 +25,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemdIntegration = true;
-    xwayland = {
-      enable = true;
-      hidpi = true;
-    };
+    xwayland.enable = true;
     recommendedEnvironment = true;
     extraConfig = monitorConfigSet."${hostname}" + ''
 input {
