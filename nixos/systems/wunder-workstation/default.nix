@@ -35,6 +35,7 @@
   };
 
   networking.useDHCP = false;
+  networking.enableIPv6 = false;
   systemd.network.enable = true;
   systemd.network.networks = {
     "10-lan" = {
@@ -58,6 +59,11 @@
   services.printing.drivers = [ pkgs.brlaser ];
 
   security.polkit.enable = true;
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
 
   fonts.fonts = with pkgs; [
     noto-fonts
@@ -90,7 +96,7 @@
   services.dbus.enable = true;
   services.gvfs.enable = true;
   services.pipewire = {
-    enable = false;
+    enable = true;
     alsa.enable = true;
     pulse.enable = true;
     jack.enable = true;
@@ -119,6 +125,8 @@
     extraOptions = ''experimental-features = nix-command flakes'';
     package = pkgs.nixUnstable;
   };
+
+  hardware.bluetooth.enable = true;
 
   hardware.opengl = {
 		enable = true;
