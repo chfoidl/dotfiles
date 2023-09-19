@@ -10,7 +10,7 @@
       "--enable-zero-copy"
       "--gpu"
       "--use-vulkan"
-      "--enable-features=VaapiVideoEncoder,VaapiVideoDecoder,WebUIDarkMode,CanvasOopRasterization"
+      "--enable-features=VaapiVideoEncoder,VaapiVideoDecoder,WebUIDarkMode,CanvasOopRasterization,WebRTCPipeWireCapturer,WebBluetooth"
       "--enable-oop-rasterization"
       "--enable-raw-draw"
       "--force-dark-mode"
