@@ -28,6 +28,7 @@ in
       pscpu = "ps auxf | sort -nr -k 3 | head -5";
       ls = "ls --color=auto";
       vim = "nvim";
+      nd = "(){ nix develop $@ -c zsh }";
     };
     enableCompletion = true;
     history = {

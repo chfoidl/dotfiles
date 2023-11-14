@@ -62,6 +62,12 @@
     swayidle
     swaylock-effects
 
+    mpv
+    vlc
+    pavucontrol
+
+    stripe-cli
+
     (signal-desktop.overrideAttrs (oldAttrs: rec {
       preFixup = oldAttrs.preFixup + ''
         # Start in tray by default

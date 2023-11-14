@@ -25,6 +25,12 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
     fi
 }
 
+function in_nix_shell() {
+  if [ ! -z ${IN_NIX_SHELL+x} ]; then
+    echo "${_spacer}%F{cyan}%b nix%f";
+  fi
+}
+
 local _spacer="%F{240}  %f"
 
 zstyle ':vcs_info:*' check-for-changes true
@@ -47,7 +53,7 @@ local pwd="%F{75}%1~%\%f"
 local exit_status="%B%F{1}%?%f%b${_spacer}"
 local job_count="${_spacer}%F{3}%j%f"
 
-local top="%F{$_line}╭──%F{$_badge} %f%K{$_badge}%f%F{244}%f${_spacer}%(?::$exit_status)${pwd}%(1j:$job_count:)\$vcs_info_msg_0_ %k%F{$_badge}%{$reset_color%}"
+local top="%F{$_line}╭──%F{$_badge} %f%K{$_badge}%f%F{244}%f${_spacer}%(?::$exit_status)${pwd}%(1j:$job_count:)$(in_nix_shell)\$vcs_info_msg_0_ %k%F{$_badge}%{$reset_color%}"
 
 local bot='%F{66}╰─ %(?:%F{66}:%F{1})%(!.#.$) %k%f'
 
