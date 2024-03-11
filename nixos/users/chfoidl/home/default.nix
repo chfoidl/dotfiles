@@ -21,6 +21,10 @@
   sops.defaultSopsFile = ../../../secrets/shared/secrets.yaml;
   sops.gnupg.sshKeyPaths = [ "/etc/ssh/ssh_host_rsa_key" ];
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+
   # Env variables.
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -49,10 +53,12 @@
     wlr-randr
     wl-clipboard
     slack
-    postman
     figma-linux
     xdg-utils
     whatsapp-for-linux
+    eww-wayland
+
+    bruno
 
     bitwarden
     bitwarden-cli
@@ -65,6 +71,8 @@
     mpv
     vlc
     pavucontrol
+    firefox
+    dig
 
     stripe-cli
 
@@ -83,24 +91,31 @@
 
     mkcert
     inputs.ddev.packages.${system}.ddev
-    gnome.simple-scan
     obsidian
     #inputs.hyprpaper.packages.${system}.hyprpaper
 
-    thunderbirdPackages.thunderbird-115
+    thunderbird
 
-    ((softmaker-office.overrideAttrs (oldAttrs: rec {
-      buildInputs = oldAttrs.buildInputs ++ [
-        gst_all_1.gstreamer
-        gst_all_1.gst-plugins-base
-      ];
-    })).override {
-      officeVersion = {
-        version = "1202";
-        edition = "nx";
-        hash = "sha256-bTOH0an9WfsA0WQ0gD0CvwEQIrDkRHhWjsyz+07bf8c=";
-      };
-    })
+    (gnome.simple-scan.overrideAttrs (oldAttrs: rec {
+      postFixup = ''
+        wrapProgram $out/bin/simple-scan --prefix PATH : ${lib.makeBinPath [
+          inputs.scanner.packages.${system}.simple-scan-deskew
+        ]}
+      '';
+    }))
+
+    #((softmaker-office.overrideAttrs (oldAttrs: rec {
+    #  buildInputs = oldAttrs.buildInputs ++ [
+    #    gst_all_1.gstreamer
+    #    gst_all_1.gst-plugins-base
+    #  ];
+    #})).override {
+    #  officeVersion = {
+    #    version = "1202";
+    #    edition = "nx";
+    #    hash = "sha256-bTOH0an9WfsA0WQ0gD0CvwEQIrDkRHhWjsyz+07bf8c=";
+    #  };
+    #})
 
     (pkgs.writeShellApplication {
       name = "nix-fetch-hash";

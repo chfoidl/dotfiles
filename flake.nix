@@ -1,11 +1,11 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-hardware.url = "github:nixos/nixos-hardware/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -15,22 +15,27 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.29.0";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:hyprwm/Hyprland/v0.33.1";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprpaper = {
-      url = "github:hyprwm/hyprpaper/v0.4.0";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:hyprwm/hyprpaper/c447f1195c2b0f055404bd0140d160e8452633e2";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ddev = {
-      url = "github:wunderwerkio/nix-ddev/v1.22.1";
+      url = "github:wunderwerkio/nix-ddev/v1.22.4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     configured-nvim = {
       url = "github:chfoidl/nvim-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    scanner = {
+      url = "github:chfoidl/nix-scanner";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

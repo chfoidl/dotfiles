@@ -65,7 +65,7 @@
     '';
   };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-emoji
     liberation_ttf
@@ -86,6 +86,10 @@
     pinentry-curses
     polkit_gnome
     gnome.adwaita-icon-theme
+
+    davinci-resolve
+    ffmpeg
+    obs-studio
   ];
 
   programs.dconf.enable = true;
@@ -109,14 +113,13 @@
     pinentryFlavor = "gnome3";
   };
 
-  services.avahi.enable = true;
-
   xdg.portal = {
     enable = true;
     wlr.enable = false;
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
     ];
+    config.common.default = "*";
   };
 
   programs.zsh.enable = true;
@@ -136,6 +139,7 @@
 			amdvlk
 			vaapiVdpau
 			libvdpau-va-gl
+      rocmPackages.clr.icd
 		];
   };
 
@@ -147,10 +151,28 @@
     };
   };
 
+  services.avahi = {
+    enable = true;
+    nssmdns = true;  # printing
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+      userServices = true;
+    };
+  };
+
   networking.firewall = {
     enable = true;
     trustedInterfaces = ["docker0"];
-    allowedTCPPorts = [ 9003 ];
+    allowedTCPPorts = [ 3000 3001 3002 3003 3004 3005 9003 ];
+
+    allowedTCPPortRanges = [
+      { from = 30000; to = 60000; }
+    ];
+    allowedUDPPortRanges = [
+      { from = 30000; to = 60000; }
+    ];
   };
 
   # This value determines the NixOS release from which the default

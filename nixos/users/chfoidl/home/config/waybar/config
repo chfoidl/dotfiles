@@ -20,8 +20,18 @@
     "tray"
   ],
   "wlr/workspaces": {
-    "format": "{name}",
+    "format": "{icon}",
     "on-click": "activate",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "urgent": "",
+      "active": "",
+      "default": ""
+    },
   },
   "river/mode": {
     "format": "<span style=\"italic\">{}</span>"

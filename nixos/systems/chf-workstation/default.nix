@@ -1,8 +1,8 @@
-{ inputs, config, pkgs, unstablePkgs, ... }:
+{ inputs, config, pkgs, unstablePkgs, lib, ... }:
 {
   imports = [
     ./hardware-configuration.nix
-    inputs.hyprland.nixosModules.default
+    #inputs.hyprland.nixosModules.default
     inputs.sops-nix.nixosModules.sops
   ];
 
@@ -23,6 +23,10 @@
       allowDiscards = true;
     };
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -48,7 +52,7 @@
 
   security.polkit.enable = true;
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-emoji
     liberation_ttf
@@ -69,6 +73,7 @@
     pinentry-curses
     polkit_gnome
     gnome.adwaita-icon-theme
+    nfs-utils
   ];
 
   programs.dconf.enable = true;
@@ -94,12 +99,15 @@
 
   services.avahi.enable = true;
 
+  programs.hyprland.enable = true;
+
   xdg.portal = {
     enable = true;
     wlr.enable = false;
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
     ];
+    config.common.default = "*";
   };
 
   programs.zsh.enable = true;
@@ -108,6 +116,8 @@
     extraOptions = ''experimental-features = nix-command flakes'';
     package = pkgs.nixUnstable;
   };
+
+  hardware.bluetooth.enable = true;
 
   hardware.opengl = {
 		enable = true;
@@ -132,6 +142,12 @@
     enable = true;
     trustedInterfaces = ["docker0"];
     allowedTCPPorts = [ 3000 3001 3002 3003 3004 3005 9003 ];
+  };
+
+  fileSystems."/mnt/paperless-consume" = {
+    device = "truenas:/mnt/data/services/paperless/paperless-data/consume";
+    fsType = "nfs";
+    options = [ "x-systemd.automount" "noauto" ];
   };
 
   # This value determines the NixOS release from which the default

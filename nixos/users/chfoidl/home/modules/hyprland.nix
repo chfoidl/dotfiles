@@ -1,10 +1,14 @@
 { inputs, hostname, ... }:
 let
   monitorConfigSet = {
-    chf-workstation = ''
+    chf-workstation-reg = ''
       monitor=DP-3,preferred,0x860,1
       monitor=DP-1,preferred,1280x660,1
       monitor=DP-2,preferred,4720x0,1,transform,3
+    '';
+    chf-workstation = ''
+      monitor=DP-3,preferred,0x860,1
+      monitor=DP-1,preferred,1280x660,1
     '';
     tp-p14s = ''
       monitor=eDP-1,preferred,0x0,1
@@ -16,17 +20,17 @@ let
     '';
   };
 in {
-  imports = [
-    inputs.hyprland.homeManagerModules.default
-  ];
+  #imports = [
+  #  inputs.hyprland.homeManagerModules.default
+  #];
 
   # Reference: https://github.com/hyprwm/Hyprland/blob/main/nix/hm-module.nix
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = true;
+    systemd.enable = true;
     xwayland.enable = true;
-    recommendedEnvironment = true;
+    #recommendedEnvironment = true;
     extraConfig = monitorConfigSet."${hostname}" + ''
 input {
     kb_layout = de
@@ -115,7 +119,10 @@ gestures {
 windowrulev2 = float,class:(syncthingtray),title:(Syncthing Tray)
 windowrulev2 = center,class:(syncthingtray),title:(Syncthing Tray)
 
-
+misc {
+  disable_hyprland_logo	= true
+  disable_splash_rendering = true
+}
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 $mainMod = SUPER

@@ -20,10 +20,10 @@
     };
   };
 
-  systemd.user.targets.tray = {
-    Unit = {
-      Description = "System Tray";
-      Wants = [ "graphical-session-pre.target" ];
-    };
-  };
+  #systemd.user.targets.tray = {
+  #  Unit = {
+  #    Description = "System Tray";
+  #    Wants = [ "graphical-session-pre.target" ];
+  #  };
+  #};
 }

@@ -1,12 +1,11 @@
 { ... }:
 {
-  sops.secrets."git/name" = {};
-  sops.secrets."git/email" = {};
+  sops.secrets."git-config" = {
+    path = "/home/chfoidl/.config/git/config";
+  };
 
   programs.git = {
     enable = true;
-    userName = "Christian Foidl";
-    userEmail = "christian@wunderwerk.io";
   };
 }
 
