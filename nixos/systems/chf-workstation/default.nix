@@ -18,7 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices = {
     sysroot = {
-      device = "/dev/disk/by-uuid/0d0dd5f8-86d4-4bb7-9679-09dbc3e92597";
+      device = "/dev/disk/by-uuid/151693a2-484e-4462-be17-9c73c480278e";
       preLVM = true;
       allowDiscards = true;
     };
@@ -156,6 +156,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 
 }
