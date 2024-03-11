@@ -24,6 +24,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hypridle = {
+      url = "github:hyprwm/hypridle/v0.1.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ddev = {
       url = "github:wunderwerkio/nix-ddev/v1.22.4";
       inputs.nixpkgs.follows = "nixpkgs";

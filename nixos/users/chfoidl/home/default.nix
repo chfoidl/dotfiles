@@ -1,7 +1,8 @@
-{ inputs, config, system, pkgs, unstable-pkgs, ... }:
+{ inputs, config, system, pkgs, unstablePkgs, ... }:
 {
   imports = [
     inputs.configured-nvim.homeManagerModules.default
+    inputs.hypridle.homeManagerModules.default
     ./modules/atuin.nix
     ./modules/git.nix
     #./modules/neovim.nix
@@ -13,6 +14,7 @@
     ./modules/wofi.nix
     ./modules/hyprland.nix
     ./modules/hyprpaper.nix
+    ./modules/hypridle.nix
     ./modules/syncthing.nix
     ./modules/fzf.nix
     ./modules/zsh
@@ -65,8 +67,8 @@
     anydesk
     atuin
 
-    swayidle
-    swaylock-effects
+    usbutils
+    unstablePkgs.hyprlock
 
     mpv
     vlc

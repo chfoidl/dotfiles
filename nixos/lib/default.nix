@@ -26,6 +26,7 @@
     inputs.home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = {
         inherit system hostname inputs;
+        unstablePkgs = builtins.getAttr system inputs.nixpkgs-unstable.outputs.legacyPackages;
       };
       pkgs = builtins.getAttr system inputs.nixpkgs.outputs.legacyPackages;
       modules = [
