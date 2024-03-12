@@ -66,6 +66,7 @@
     bitwarden-cli
     anydesk
     atuin
+    tmux
 
     usbutils
     unstablePkgs.hyprlock
