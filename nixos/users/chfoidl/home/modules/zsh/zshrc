@@ -23,3 +23,5 @@ zle -N down-line-or-beginning-search
 # Colors
 autoload -Uz colors && colors
 
+# Disable Ctrl+J
+bindkey -r "^J"
