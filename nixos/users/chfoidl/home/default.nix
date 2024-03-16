@@ -67,6 +67,7 @@
     anydesk
     atuin
     tmux
+    zellij
 
     usbutils
     unstablePkgs.hyprlock
